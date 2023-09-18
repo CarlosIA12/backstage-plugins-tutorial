@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage-example-component
+  description: Lambda created for Backstage tutorial about plugins
+  annotations:
+    github.com/project-slug: CarlosIA12/backstage-plugins-tutorial
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/guest
