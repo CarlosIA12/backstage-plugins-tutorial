@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Secret Wedding Site</title>
+    <style>
+        /* Center the content vertically and horizontally */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0; /* Background color */
+        }
+
+        /* Container for the image and title */
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        /* Style for the image */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Style for the title with background */
+        .title-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        /* Style for the title text */
+        .title {
+            font-size: 36px; /* Adjust font size as needed */
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Style for the button container */
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Style for the button */
+        .button {
+            background-color: #ff7675; /* Red background color */
+            color: #fff; /* White text color */
+            padding: 15px 30px; /* Adjust padding as needed */
+            border: none;
+            border-radius: 5px;
+            font-size: 18px; /* Adjust font size as needed */
+            cursor: pointer;
+        }
+
+        /* On hover, make the button slightly darker */
+        .button:hover {
+            background-color: #ff5454;
+        }
+
+        /* Initially hide the attendees container */
+        .attendees-container {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        /* Style for the attendees list */
+        .attendees-list {
+            font-size: 16px; /* Adjust font size as needed */
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image loaded from your S3 bucket -->
+        <img src="http://wedding-backstage-plugin-tutorial.s3-website-us-west-1.amazonaws.com/wedding-background.jpg" alt="Wedding Image">
+        
+        <!-- Title with background -->
+        <div class="title-container">
+            <div class="title">Super Secret Wedding Site</div>
+        </div>
+        
+        <!-- Button container -->
+        <div class="button-container">
+            <button class="button">Who's Coming?</button>
+        </div>
+
+        <!-- Attendees container -->
+        <div class="attendees-container">
+            <div class="attendees-list">
+                <!-- Attendees will be displayed here -->
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.querySelector(".button");
+    const attendeesContainer = document.querySelector(".attendees-container");
+    const attendeesList = document.querySelector(".attendees-list");
+
+    button.addEventListener("click", async () => {
+        attendeesContainer.style.display = "block"; // Show the container
+
+        try {
+            // Make a request to your Lambda function
+            const response = await fetch("https://77kwwcmjlkae6k7cfjssworyc40tyeua.lambda-url.us-east-2.on.aws/");
+            const data = await response.json();
+
+            // Display the list of attendees
+            if (data && Array.isArray(data.attendees)) {
+                const attendeesHTML = data.attendees.map((attendee) => {
+                    return `<div>${attendee}</div>`;
+                }).join('');
+                attendeesList.innerHTML = attendeesHTML;
+            } else {
+                attendeesList.innerHTML = "No attendees found.";
+            }
+        } catch (error) {
+            console.error("Error fetching attendees:", error);
+            attendeesList.innerHTML = "Error fetching attendees.";
+        }
+    });
+});
+</script>
+</html>
