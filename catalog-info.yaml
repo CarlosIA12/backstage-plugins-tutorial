@@ -5,7 +5,7 @@ metadata:
   description: Lambda created for Backstage tutorial about plugins
   annotations:
     github.com/project-slug: CarlosIA12/backstage-plugins-tutorial
-    vault.io/secrets-path: backstage-plugins-tutorial
+    vault.io/secrets-path: data/backstage-plugins-tutorial
 spec:
   type: service
   lifecycle: experimental
