@@ -6,6 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: CarlosIA12/backstage-plugins-tutorial
     vault.io/secrets-path: kv
+    vault.io/secrets-engine: customSecretEngine
 spec:
   type: service
   lifecycle: experimental
