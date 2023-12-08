@@ -19,6 +19,11 @@
         .container {
             position: relative;
             text-align: center;
+            background-image: url("http://backstage-heraldofsolace.s3-website-us-east-1.amazonaws.com/wedding-background.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 100%;
         }
 
         /* Style for the image */
@@ -91,11 +96,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Image loaded from your S3 bucket -->
-        <img src="http://wedding-backstage-plugin-tutorial.s3-website-us-west-1.amazonaws.com/wedding-background.jpg" alt="Wedding Image">
-        
-        <!-- Title with background -->
-        <div class="title-container">
+       <div class="title-container">
             <div class="title">Super Secret Wedding Site</div>
         </div>
         
@@ -123,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // Make a request to your Lambda function
-            const response = await fetch("https://77kwwcmjlkae6k7cfjssworyc40tyeua.lambda-url.us-east-2.on.aws/");
+            const response = await fetch("https://bwr4tvmftxhl4rulcbfiwkvpc40odffy.lambda-url.us-east-1.on.aws/");
             const data = await response.json();
 
             // Display the list of attendees

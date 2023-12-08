@@ -4,10 +4,10 @@ metadata:
   name: backstage-example-component
   description: Lambda created for Backstage tutorial about plugins
   annotations:
-    github.com/project-slug: CarlosIA12/backstage-plugins-tutorial
+    github.com/project-slug: heraldofsolace/backstage-plugins-tutorial
     vault.io/secrets-path: 'backstage'
     datadoghq.com/site: datadoghq.com
-    datadoghq.com/dashboard-url: https://p.us5.datadoghq.com/sb/e1f476ae-56b3-11ee-acb8-da7ad0900005-dcf5bfcc46ec4b5c2dc86784ca7edb89
+    datadoghq.com/dashboard-url: https://p.us5.datadoghq.com/sb/0b77c9a6-9596-11ee-ada2-da7ad0900005-b63a6118d9c490b8f5e6e63201b82e28
 spec:
   type: service
   lifecycle: experimental
